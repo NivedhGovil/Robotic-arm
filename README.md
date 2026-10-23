@@ -2,9 +2,11 @@
 
 ## Images
 
-The `Images` folder contains project images:
+The `Images/` folder contains the project's image assets:
 
-- `Images/robotic-arm-project-showcase.png`
-- `Images/robotic-arm-presentation.png`
-- `Images/robotic-arm-demo-setup.png`
-- `Images/robotic-arm-overview.png`
+- [Robotic arm tabletop setup](Images/robotic-arm-tabletop-setup.png)
+- [Robotic arm tracking demo beside a laptop](Images/robotic-arm-tracking-demo.png)
+- [Robotic arm mounted at the table edge](Images/robotic-arm-mounted-clamp.png)
+- [Student presenting the robotics project](Images/student-robotics-presentation.png)
+- [Certificate presentation](Images/certificate-presentation.png)
+- [Student working with the robotic arm and laptop](Images/student-robotic-arm-laptop.png)

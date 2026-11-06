@@ -36,7 +36,7 @@ The goal of this project was to design and build a robotic arm using servo motor
 ## Software & Programming Progression
 
 The software development:
-1. **Basic Port & Communication Tests:** Verifying serial port connections (`COM5` and `COM7` were mostly used) and we pinged active servo IDs to establish connections with the motors. 
+1. **Basic Port & Communication Tests:** Verifying serial port connections like COMs and pinging active servo IDs to establish connections with the motors. 
 2. **ID Assignment & Response Checks:** Scanning for connected hardware and mapping physical joints to unique software IDs (1 through 6).
 3. **Position Monitoring & Limit Calibration:** Reading encoder limits to establish safe working ranges for each joint.
 4. **Teleoperation & Mimic Control:** Linking the master leader arm to the follower arm.
@@ -47,7 +47,7 @@ The software development:
 
 ## Advanced Robotics & AI Integration
 
-The project incorporates machine learning policies using frameworks like **LeRobot**:
+The project incorporates machine learning policies using frameworks like [**LeRobot**](https://huggingface.co/lerobot):
 * **ACT (Action Chunking with Transformers):** Teaches the robot to imitate human demonstrations by predicting chunks of future actions using Transformers and Conditional Variational Autoencoders (CVAEs).
 * **Diffusion Policy:** Generates robust action trajectories by starting with noise and denoising paths conditioned on visual observations.
 * **VLA (Vision-Language-Action):** Bridges visual scenes and language instructions to execute physical tasks.

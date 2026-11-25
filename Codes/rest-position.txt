@@ -1,0 +1,27 @@
+ROBOT REST POSITION
+===================
+
+ID 1
+Position: 1016 counts
+Angle: 89.30 degrees
+
+ID 2
+Position: 725 counts
+Angle: 63.72 degrees
+
+ID 3
+Position: 2743 counts
+Angle: 241.08 degrees
+
+ID 4
+Position: 1113 counts
+Angle: 97.82 degrees
+
+ID 5
+Position: 921 counts
+Angle: 80.95 degrees
+
+ID 6
+Position: 2296 counts
+Angle: 201.80 degrees
+

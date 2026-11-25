@@ -1,0 +1,131 @@
+from python_st3215 import ST3215, ServoNotRespondingError
+import time
+
+# ============================================================
+# SETTINGS
+# ============================================================
+
+PORT = "COM7"
+
+SERVO_IDS = [1, 2, 3, 4, 5, 6]
+
+MOVE_TIME = 1.5
+PAUSE_TIME = 0.2
+
+
+# ============================================================
+# POSITION <-> DEGREES
+# ============================================================
+
+def degrees_to_position(angle):
+    return int(angle * 4096 / 360)
+
+
+def position_to_degrees(position):
+    return position * 360.0 / 4096.0
+
+
+# ============================================================
+# CONNECT
+# ============================================================
+
+controller = ST3215(PORT)
+
+print("=" * 60)
+print("          STEP-BY-STEP MOTOR CONTROL")
+print("=" * 60)
+
+
+try:
+
+    for servo_id in SERVO_IDS:
+
+        print()
+        print("------------------------------------------")
+        print(f"              MOTOR ID {servo_id}")
+        print("------------------------------------------")
+
+        try:
+
+            servo = controller.wrap_servo(servo_id)
+
+            # Read current position
+            current_position = servo.sram.read_current_location()
+            current_angle = position_to_degrees(current_position)
+
+            print(f"Current angle: {current_angle:.2f}°")
+            print()
+
+            # ------------------------------------------------
+            # USER ENTERS TARGET ANGLE
+            # ------------------------------------------------
+
+            while True:
+
+                try:
+
+                    target_angle = float(
+                        input(
+                            f"Enter target angle for ID {servo_id} (0-360°): "
+                        )
+                    )
+
+                    if 0 <= target_angle <= 360:
+                        break
+
+                    print("Please enter an angle between 0 and 360.")
+
+                except ValueError:
+
+                    print("Please enter a number.")
+
+            # Convert angle to encoder position
+            target_position = degrees_to_position(target_angle)
+
+            print()
+            print(f"Moving ID {servo_id}...")
+            print(f"Target angle    : {target_angle:.2f}°")
+            print(f"Target position : {target_position}")
+
+            # ------------------------------------------------
+            # MOVE MOTOR
+            # ------------------------------------------------
+
+            servo.sram.write_target_location(target_position)
+
+            time.sleep(MOVE_TIME)
+
+            # ------------------------------------------------
+            # READ ACTUAL POSITION
+            # ------------------------------------------------
+
+            final_position = servo.sram.read_current_location()
+            final_angle = position_to_degrees(final_position)
+
+            print()
+            print("Movement complete.")
+            print(f"Actual position : {final_position}")
+            print(f"Actual angle    : {final_angle:.2f}°")
+
+        except ServoNotRespondingError:
+
+            print(f"ID {servo_id}: NO RESPONSE")
+
+        except Exception as e:
+
+            print(f"ID {servo_id}: ERROR")
+            print(e)
+
+        # Wait before next motor
+        time.sleep(PAUSE_TIME)
+
+
+finally:
+
+    controller.close()
+
+
+print()
+print("=" * 60)
+print("              ALL MOTORS COMPLETE")
+print("=" * 60)

@@ -54,6 +54,10 @@ The project incorporates machine learning policies using frameworks like [**LeRo
 
 ---
 
+## Teleop Video Link
+
+https://www.youtube.com/shorts/AS7ert1-7yo
+
 ## LICENSE
 
 MIT License
